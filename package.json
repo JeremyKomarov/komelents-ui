@@ -4,17 +4,20 @@
   "type": "module",
   "main": "./dist/komelents-ui.cjs.js",
   "module": "./dist/komelents-ui.es.js",
+  "style": "./dist/komelents-ui.css",
   "exports": {
     ".": {
       "import": "./dist/komelents-ui.es.js",
       "require": "./dist/komelents-ui.cjs.js"
-    }
+    },
+    "./dist/komelents-ui.css": "./dist/komelents-ui.css"
   },
   "files": ["dist"],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "build:lib": "BUILD_MODE=lib vite build",
+    "prepublishOnly": "npm run build:lib",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -22,12 +25,11 @@
     "react": ">=17",
     "react-dom": ">=17"
   },
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
-    "sass": "^1.99.0"
-  },
-  "devDependencies": {
+    "sass": "^1.99.0",
     "@eslint/js": "^9.39.4",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
