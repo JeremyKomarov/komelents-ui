@@ -1,0 +1,137 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.button {
+  @include button-reset;
+
+  gap: $spacing-sm;
+  border-radius: $radius-md;
+  white-space: nowrap;
+  user-select: none;
+
+  // ── Sizes ──────────────────────────────────────────────
+  &--sm {
+    height: 30px;
+    padding: 0 $spacing-md;
+    font-size: $font-size-sm;
+    border-radius: $radius-sm;
+  }
+
+  &--md {
+    height: 38px;
+    padding: 0 $spacing-lg;
+    font-size: $font-size-md;
+  }
+
+  &--lg {
+    height: 46px;
+    padding: 0 $spacing-xl;
+    font-size: $font-size-lg;
+    border-radius: $radius-lg;
+  }
+
+  // ── Variants ────────────────────────────────────────────
+  &--primary {
+    background: $color-primary;
+    color: $color-white;
+    box-shadow: $shadow-sm;
+
+    &:hover {
+      background: $color-primary-hover;
+    }
+    &:active {
+      background: $color-primary-active;
+    }
+  }
+
+  &--secondary {
+    background: $color-secondary;
+    color: $color-white;
+    box-shadow: $shadow-sm;
+
+    &:hover {
+      background: $color-secondary-hover;
+    }
+  }
+
+  &--ghost {
+    background: transparent;
+    color: $color-text;
+
+    &:hover {
+      background: $color-ghost-hover;
+    }
+  }
+
+  &--outline {
+    background: transparent;
+    color: $color-primary;
+    border: 1.5px solid $color-primary;
+
+    &:hover {
+      background: rgba(79, 70, 229, 0.06);
+    }
+  }
+
+  &--danger {
+    background: $color-danger;
+    color: $color-white;
+    box-shadow: $shadow-sm;
+
+    &:hover {
+      background: $color-danger-hover;
+    }
+  }
+
+  &--success {
+    background: $color-success;
+    color: $color-white;
+    box-shadow: $shadow-sm;
+
+    &:hover {
+      background: $color-success-hover;
+    }
+  }
+
+  // ── Modifiers ───────────────────────────────────────────
+  &--full-width {
+    width: 100%;
+  }
+
+  &--loading {
+    position: relative;
+    color: transparent !important;
+    pointer-events: none;
+
+    &::after {
+      content: "";
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border: 2px solid currentColor;
+      border-top-color: transparent;
+      border-radius: $radius-full;
+      animation: button-spin 0.6s linear infinite;
+      color: $color-white;
+    }
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.45;
+    pointer-events: none;
+  }
+
+  // ── Icon slot ───────────────────────────────────────────
+  &__icon {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+}
+
+@keyframes button-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

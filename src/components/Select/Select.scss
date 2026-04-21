@@ -1,0 +1,99 @@
+@use "../../styles/variables" as *;
+
+.select {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+  width: 100%;
+
+  &__label {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: $color-text;
+    font-family: $font-family;
+  }
+
+  &__wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  &__field {
+    width: 100%;
+    font-family: $font-family;
+    font-weight: $font-weight-regular;
+    color: $color-text;
+    background: $color-white;
+    border: 1.5px solid $color-border;
+    border-radius: $radius-md;
+    outline: none;
+    appearance: none;
+    cursor: pointer;
+    transition: border-color $transition-fast, box-shadow $transition-fast;
+    padding-right: 36px;
+
+    &:hover:not(:disabled) {
+      border-color: #c9cdd4;
+    }
+
+    &:focus {
+      border-color: $color-primary;
+      box-shadow: $shadow-focus;
+    }
+
+    &:disabled {
+      background: $color-disabled-bg;
+      color: $color-disabled-text;
+      cursor: not-allowed;
+    }
+
+    .select--sm & {
+      height: 30px;
+      padding-left: $spacing-md;
+      font-size: $font-size-sm;
+    }
+
+    .select--md & {
+      height: 38px;
+      padding-left: $spacing-md;
+      font-size: $font-size-md;
+    }
+
+    .select--lg & {
+      height: 46px;
+      padding-left: $spacing-lg;
+      font-size: $font-size-lg;
+    }
+  }
+
+  &__arrow {
+    position: absolute;
+    right: $spacing-md;
+    pointer-events: none;
+    color: $color-text-muted;
+    display: flex;
+    align-items: center;
+    transition: transform $transition-fast;
+  }
+
+  &__helper {
+    font-size: $font-size-xs;
+    font-family: $font-family;
+    color: $color-text-muted;
+  }
+
+  &--error &__field {
+    border-color: $color-danger;
+    &:focus { box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2); }
+  }
+
+  &--error &__helper { color: $color-danger; }
+
+  &--success &__field {
+    border-color: $color-success;
+    &:focus { box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2); }
+  }
+
+  &--success &__helper { color: $color-success; }
+}
