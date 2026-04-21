@@ -1,11 +1,12 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import cssInjectedByJs from 'vite-plugin-css-injected-by-js';
 import { resolve } from 'path';
 
 const isLib = process.env.BUILD_MODE === 'lib';
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), ...(isLib ? [cssInjectedByJs()] : [])],
   resolve: {
     alias: {
       '@components': resolve(__dirname, 'src/components'),
